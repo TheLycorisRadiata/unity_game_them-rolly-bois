@@ -1,29 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    private static float x_axis, z_axis;
+    public TextMeshProUGUI txtCount;
+	public GameObject objWinText;
+    private static float xAxis, zAxis;
     private static Rigidbody rb;
-    private static Transform coin_parent;
+    private static Transform coinParent;
     private static int count;
-    private static bool has_won;
+    private static int maxCount;
 
     void Start()
     {
+        objWinText.SetActive(false);
         rb = GetComponent<Rigidbody>();
-        coin_parent = GameObject.FindGameObjectWithTag("CoinParent").transform;
+        coinParent = GameObject.FindGameObjectWithTag("CoinParent").transform;
         count = 0;
-        has_won = false;
+        maxCount = coinParent.childCount;
+        txtCount.text = "Count: " + count.ToString() + "/" + maxCount.ToString();
     }
 
     void Update()
     {
         // "Use Physical Keys" enabled
-        x_axis = Input.GetAxis("Horizontal");
-        z_axis = Input.GetAxis("Vertical");
-        rb.AddForce(new Vector3(x_axis, 0, z_axis));
+        xAxis = Input.GetAxis("Horizontal");
+        zAxis = Input.GetAxis("Vertical");
+        rb.AddForce(new Vector3(xAxis, 0, zAxis));
     }
 
     void OnTriggerEnter(Collider other)
@@ -33,11 +38,9 @@ public class PlayerController : MonoBehaviour
             other.gameObject.transform.parent = null;
             Destroy(other.gameObject);
             ++count;
-            if (coin_parent.childCount == 0)
-            {
-                has_won = true;
-                Debug.Log("Victory!");
-            }
+            txtCount.text = "Count: " + count.ToString() + "/" + maxCount.ToString();
+            if (coinParent.childCount == 0)
+                objWinText.SetActive(true);
         }
     }
 }
