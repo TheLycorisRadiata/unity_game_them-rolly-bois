@@ -8,25 +8,23 @@ public class PlayerController : MonoBehaviour
     public GameObject objWinText;
     public TextMeshProUGUI txtCount;
     private static Transform coinParent;
+    private static AudioManager audioManager;
     private static int count;
-    private static int maxCount;
-
     private static float speed;
     private static float xAxis, zAxis;
 
-    private static AudioManager audioManager;
-
-    void Start()
+    void Awake()
     {
         objWinText.SetActive(false);
         coinParent = GameObject.FindGameObjectWithTag("CoinParent").transform;
-        count = 0;
-        maxCount = coinParent.childCount;
-        txtCount.text = "Count: " + count.ToString() + "/" + maxCount.ToString();
-
-        speed = 5f;
-
         audioManager = FindObjectOfType<AudioManager>();
+    }
+
+    void Start()
+    {
+        count = 0;
+        txtCount.text = count.ToString();
+        speed = 5f;
         audioManager.Play("Theme");
     }
 
@@ -47,7 +45,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.transform.parent = null;
             Destroy(other.gameObject);
             ++count;
-            txtCount.text = "Count: " + count.ToString() + "/" + maxCount.ToString();
+            txtCount.text = count.ToString();
             if (coinParent.childCount == 0)
             {
                 objWinText.SetActive(true);
