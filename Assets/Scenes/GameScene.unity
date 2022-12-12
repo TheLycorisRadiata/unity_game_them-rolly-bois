@@ -961,6 +961,15 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: b7e5d603f65a32c4b94922c4628a2123, type: 2}
   mixerGroup: {fileID: 24300002, guid: b7e5d603f65a32c4b94922c4628a2123, type: 2}
   sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: 5ffff407a758a1647a31cb0a1254600b, type: 3}
+    volume: 0.4
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: -1398309400906668097, guid: b7e5d603f65a32c4b94922c4628a2123, type: 2}
+    source: {fileID: 0}
   - name: CoinCollection
     clip: {fileID: 8300000, guid: 3042b45d03ae76549b9ac76fdb7b8b15, type: 3}
     volume: 1
@@ -972,7 +981,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Victory
     clip: {fileID: 8300000, guid: 5dbdb608a5739084b81ca095b8cd3827, type: 3}
-    volume: 0.4
+    volume: 0.5
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

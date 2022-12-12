@@ -11,10 +11,10 @@ public class PlayerController : MonoBehaviour
     private static int count;
     private static int maxCount;
 
-    private static AudioManager audioManager;
-
     private static float speed;
     private static float xAxis, zAxis;
+
+    private static AudioManager audioManager;
 
     void Start()
     {
@@ -24,9 +24,10 @@ public class PlayerController : MonoBehaviour
         maxCount = coinParent.childCount;
         txtCount.text = "Count: " + count.ToString() + "/" + maxCount.ToString();
 
-        audioManager = FindObjectOfType<AudioManager>();
-
         speed = 5f;
+
+        audioManager = FindObjectOfType<AudioManager>();
+        audioManager.Play("Theme");
     }
 
     void Update()
