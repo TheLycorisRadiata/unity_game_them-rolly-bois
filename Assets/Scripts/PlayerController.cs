@@ -5,30 +5,33 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject objWinText;
     public TextMeshProUGUI txtCount;
-	public GameObject objWinText;
-    private static float xAxis, zAxis;
-    private static Rigidbody rb;
     private static Transform coinParent;
     private static int count;
     private static int maxCount;
 
+    private static float speed;
+    private static float xAxis, zAxis;
+
     void Start()
     {
         objWinText.SetActive(false);
-        rb = GetComponent<Rigidbody>();
         coinParent = GameObject.FindGameObjectWithTag("CoinParent").transform;
         count = 0;
         maxCount = coinParent.childCount;
         txtCount.text = "Count: " + count.ToString() + "/" + maxCount.ToString();
+
+        speed = 5f;
     }
 
     void Update()
     {
         // "Use Physical Keys" enabled
         xAxis = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * xAxis * speed * Time.deltaTime);
         zAxis = Input.GetAxis("Vertical");
-        rb.AddForce(new Vector3(xAxis, 0, zAxis));
+        transform.Translate(Vector3.forward * zAxis * speed * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider other)
