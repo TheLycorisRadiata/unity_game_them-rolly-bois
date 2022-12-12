@@ -156,7 +156,7 @@ Transform:
   - {fileID: 2122648021}
   - {fileID: 125314010}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &74218706
 PrefabInstance:
@@ -860,7 +860,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: 50, z: 0}
 --- !u!4 &858757623 stripped
 Transform:
@@ -929,6 +929,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2541098452252195997, guid: af93c035dc89db439a98a1c4dfebebc9, type: 3}
   m_PrefabInstance: {fileID: 884830709}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &916160143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 916160145}
+  - component: {fileID: 916160144}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &916160144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916160143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76a3ed007bf6fd4484972905f3494fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: b7e5d603f65a32c4b94922c4628a2123, type: 2}
+  mixerGroup: {fileID: 24300002, guid: b7e5d603f65a32c4b94922c4628a2123, type: 2}
+  sounds:
+  - name: CoinCollection
+    clip: {fileID: 8300000, guid: 3042b45d03ae76549b9ac76fdb7b8b15, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: -1843931683830447748, guid: b7e5d603f65a32c4b94922c4628a2123, type: 2}
+    source: {fileID: 0}
+  - name: Victory
+    clip: {fileID: 8300000, guid: 5dbdb608a5739084b81ca095b8cd3827, type: 3}
+    volume: 0.4
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: -1843931683830447748, guid: b7e5d603f65a32c4b94922c4628a2123, type: 2}
+    source: {fileID: 0}
+--- !u!4 &916160145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916160143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.0501866, y: 7.094393, z: 0.6685276}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1077,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 65, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -1258,7 +1323,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1389951072
 Rigidbody:
@@ -1288,8 +1353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74ed7f35d2c7739a8ec3bbd21af56fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtCount: {fileID: 1154327404}
   objWinText: {fileID: 1869563312}
+  txtCount: {fileID: 1154327404}
 --- !u!1001 &1462620243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1418,7 +1483,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1578718929
 PrefabInstance:
@@ -1639,7 +1704,7 @@ RectTransform:
   - {fileID: 1154327403}
   - {fileID: 1869563313}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

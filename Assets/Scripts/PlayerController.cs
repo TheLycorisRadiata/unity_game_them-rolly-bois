@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private static int count;
     private static int maxCount;
 
+    private static AudioManager audioManager;
+
     private static float speed;
     private static float xAxis, zAxis;
 
@@ -21,6 +23,8 @@ public class PlayerController : MonoBehaviour
         count = 0;
         maxCount = coinParent.childCount;
         txtCount.text = "Count: " + count.ToString() + "/" + maxCount.ToString();
+
+        audioManager = FindObjectOfType<AudioManager>();
 
         speed = 5f;
     }
@@ -38,12 +42,16 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Coin"))
         {
+            audioManager.Play("CoinCollection");
             other.gameObject.transform.parent = null;
             Destroy(other.gameObject);
             ++count;
             txtCount.text = "Count: " + count.ToString() + "/" + maxCount.ToString();
             if (coinParent.childCount == 0)
+            {
                 objWinText.SetActive(true);
+                audioManager.Play("Victory");
+            }
         }
     }
 }
