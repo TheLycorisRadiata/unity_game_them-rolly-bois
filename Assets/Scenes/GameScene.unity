@@ -689,6 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 4607320399599269906, guid: 3e6224b11ea98874d877dd660affed5e, type: 3}
+  corridorPrefab: {fileID: 3068680772311802007, guid: 94743a4356e0e974f8a4477f787da117, type: 3}
 --- !u!1 &1389951067
 GameObject:
   m_ObjectHideFlags: 0

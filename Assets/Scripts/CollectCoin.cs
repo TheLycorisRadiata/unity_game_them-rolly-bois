@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollectCoin : MonoBehaviour
 {
     private static AudioManager audioManager;
-    private static GameObject collectibleParent;
+    private GameObject collectibleParent;
     
     void Awake()
     {

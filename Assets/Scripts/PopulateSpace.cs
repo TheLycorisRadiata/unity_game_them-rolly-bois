@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopulateRoom : MonoBehaviour
+public class PopulateSpace : MonoBehaviour
 {
     [SerializeField]
     private GameObject coinPrefab;
@@ -22,12 +22,33 @@ public class PopulateRoom : MonoBehaviour
     {
         int i;
         float coinScale = 0.5f, coinHeight = coinPrefab.transform.position.y;
-        // Default Unity plane
-        float xMin = -5f + coinScale, xMax = 5f - coinScale;
-        float zMin = -5f + coinScale, zMax = 5f - coinScale;
+        float xMin, xMax, zMin, zMax;
 
-        minCoinAmount = 1;
-        maxCoinAmount = 12;
+        if (gameObject.tag == "Room")
+        {
+            // Default Unity plane (10x10)
+            xMin = -5f + coinScale;
+            xMax = 5f - coinScale;
+            zMin = -5f + coinScale;
+            zMax = 5f - coinScale;
+
+            minCoinAmount = 1;
+            maxCoinAmount = 12;
+        }
+        else if (gameObject.tag == "Corridor")
+        {
+            // Based upon the default Unity plane (2x10)
+            xMin = -1f + coinScale;
+            xMax = 1f - coinScale;
+            zMin = -5f + coinScale;
+            zMax = 5f - coinScale;
+
+            minCoinAmount = 1;
+            maxCoinAmount = 3;
+        }
+        else
+            return;
+
         coinAmount = (int)Random.Range(minCoinAmount, maxCoinAmount);
 
         arrCoins = new GameObject[coinAmount];
@@ -36,7 +57,7 @@ public class PopulateRoom : MonoBehaviour
             arrCoins[i] = Instantiate(coinPrefab) as GameObject;
             arrCoins[i].transform.parent = collectibleChild.transform;
             // The coin scale has been taken into account as not to have the coin placed within walls
-            arrCoins[i].transform.position = new Vector3(Random.Range(xMin, xMax), coinHeight, Random.Range(zMin, zMax));
+            arrCoins[i].transform.localPosition = new Vector3(Random.Range(xMin, xMax), coinHeight, Random.Range(zMin, zMax));
         }
     }
 }
