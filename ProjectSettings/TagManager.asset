@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Coin
   - CoinParent
+  - Room
   layers:
   - Default
   - TransparentFX
