@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopulateSpace : MonoBehaviour
+public class SpaceManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject coinPrefab;
-    private GameObject collectibleChild;
+    private GameObject collectibleChildren;
     private GameObject groundChild;
     private GameObject[] arrCoins;
     private int minCoinAmount, maxCoinAmount;
@@ -15,10 +15,15 @@ public class PopulateSpace : MonoBehaviour
     void Awake()
     {
         groundChild = transform.Find("Ground").gameObject;
-        collectibleChild = transform.Find("Collectibles").gameObject;
+        collectibleChildren = transform.Find("Collectibles").gameObject;
     }
 
     void Start()
+    {
+        PopulateSpace();
+    }
+
+    private void PopulateSpace()
     {
         int i;
         float coinScale = 0.5f, coinHeight = coinPrefab.transform.position.y;
@@ -55,7 +60,7 @@ public class PopulateSpace : MonoBehaviour
         for (i = 0; i < arrCoins.Length; ++i)
         {
             arrCoins[i] = Instantiate(coinPrefab) as GameObject;
-            arrCoins[i].transform.parent = collectibleChild.transform;
+            arrCoins[i].transform.parent = collectibleChildren.transform;
             // The coin scale has been taken into account as not to have the coin placed within walls
             arrCoins[i].transform.localPosition = new Vector3(Random.Range(xMin, xMax), coinHeight, Random.Range(zMin, zMax));
         }

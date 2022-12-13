@@ -11,4 +11,4 @@ https://opengameart.org/content/completion-sound
 * positive_1.mp3 && positive_2.mp3
 https://opengameart.org/content/postive-sounds
 
-* victory.mp3 is extracted from positive_1.mp3
+* space_completed.mp3 is extracted from positive_1.mp3

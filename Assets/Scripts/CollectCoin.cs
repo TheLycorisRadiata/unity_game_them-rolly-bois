@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollectCoin : MonoBehaviour
 {
     private static AudioManager audioManager;
-    private GameObject collectibleParent;
+    private GameObject spaceParent;
     
     void Awake()
     {
@@ -14,11 +14,23 @@ public class CollectCoin : MonoBehaviour
 
     void Start()
     {
-        collectibleParent = transform.parent.gameObject;
+        Transform t = transform;
+        spaceParent = null;
+        while (t.parent != null)
+        {
+            if (t.parent.tag == "Room" || t.parent.tag == "Corridor")
+            {
+                spaceParent = t.parent.gameObject;
+                break;
+            }
+            t = t.parent.transform;
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
+        int spaceIndex = -1;
+
         if (other.gameObject.CompareTag("Player"))
         {
             audioManager.Play("CoinCollection");
@@ -26,8 +38,8 @@ public class CollectCoin : MonoBehaviour
             Destroy(gameObject);
             UIManager.UpdateCount();
 
-            if (collectibleParent.transform.childCount == 0)
-                UIManager.DisplayVictoryMessage();
+            spaceIndex = int.TryParse(spaceParent.name.Split(' ')[1], out int x) ? x : -1;
+            GameHandler.HandleSpaceCompletion(spaceParent.tag, spaceIndex);
         }
     }
 }
