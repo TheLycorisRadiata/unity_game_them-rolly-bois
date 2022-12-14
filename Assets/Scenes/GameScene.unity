@@ -380,7 +380,7 @@ MonoBehaviour:
     mixerGroup: {fileID: -1398309400906668097, guid: b7e5d603f65a32c4b94922c4628a2123, type: 2}
     source: {fileID: 0}
   - name: CoinCollection
-    clip: {fileID: 8300000, guid: 2f6be5a700a4c0aba9dccadcd2541e56, type: 3}
+    clip: {fileID: 8300000, guid: a94b71b7a3c97c229b748117e8f1725e, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
@@ -389,7 +389,7 @@ MonoBehaviour:
     mixerGroup: {fileID: -1843931683830447748, guid: b7e5d603f65a32c4b94922c4628a2123, type: 2}
     source: {fileID: 0}
   - name: SpaceCompleted
-    clip: {fileID: 8300000, guid: 5dbdb608a5739084b81ca095b8cd3827, type: 3}
+    clip: {fileID: 8300000, guid: dc85f7f5500e8949ebdd19498d098bfa, type: 3}
     volume: 0.5
     volumeVariance: 0
     pitch: 1

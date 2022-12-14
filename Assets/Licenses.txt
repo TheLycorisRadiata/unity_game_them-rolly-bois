@@ -5,10 +5,10 @@ SOUNDS
 * noisy_tube.mp3
 https://opengameart.org/content/noisy-tubes
 
-* completetask_0.mp3
+* completetask_0.wav
 https://opengameart.org/content/completion-sound
 
 * positive_1.mp3 && positive_2.mp3
 https://opengameart.org/content/postive-sounds
 
-* space_completed.mp3 is extracted from positive_1.mp3
+* space_completed.wav is extracted from positive_1.mp3
