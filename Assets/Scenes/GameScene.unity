@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65736875e43f9748998d2f939238f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 4607320399599269906, guid: 3e6224b11ea98874d877dd660affed5e, type: 3}
+  roomPrefab: {fileID: 4066759273303156206, guid: 67ea33556588419e0bf9cdd7a7e9dcc1, type: 3}
   corridorPrefab: {fileID: 3068680772311802007, guid: 94743a4356e0e974f8a4477f787da117, type: 3}
 --- !u!1 &1389951067
 GameObject:
