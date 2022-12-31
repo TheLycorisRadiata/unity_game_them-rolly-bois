@@ -5,11 +5,13 @@ using UnityEngine;
 public class CollectCoin : MonoBehaviour
 {
     private static AudioManager audioManager;
+    private static HUDManager hud;
     private GameObject spaceParent;
     
     void Awake()
     {
         audioManager = FindObjectOfType<AudioManager>();
+        hud = GameObject.Find("Main Camera").transform.Find("HUD Canvas").GetComponent<HUDManager>();
     }
 
     void Start()
@@ -36,7 +38,7 @@ public class CollectCoin : MonoBehaviour
             audioManager.Play("CoinCollected");
             transform.parent = null;
             Destroy(gameObject);
-            UIManager.UpdateCount();
+            hud.UpdateCount();
 
             spaceIndex = int.TryParse(spaceParent.name.Split(' ')[1], out int x) ? x : -1;
             GameHandler.HandleSpaceCompletion(spaceParent.tag, spaceIndex);
