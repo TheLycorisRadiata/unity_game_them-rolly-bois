@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     private static Transform ball;
-    private static float speed;
-    private static float xAxis, zAxis;
+    private static float directionalSpeed;
+    private static float horizontalInput, verticalInput;
 
     void Awake()
     {
@@ -15,17 +16,20 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        speed = 6f;
+        directionalSpeed = 6f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        // "Use Physical Keys" enabled
-        xAxis = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * xAxis * speed * Time.deltaTime);
-        zAxis = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * zAxis * speed * Time.deltaTime);
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * directionalSpeed * Time.deltaTime;
+        transform.Translate(movement);
+        ball.Rotate(new Vector3(verticalInput, 0f, -horizontalInput) * directionalSpeed, Space.Self);
+    }
 
-        ball.Rotate(zAxis, 0f, -xAxis, Space.Self);
+    void OnMove(InputValue axisValue)
+    {
+        Vector2 movementVector = axisValue.Get<Vector2>();
+        horizontalInput = movementVector.x;
+        verticalInput = movementVector.y;
     }
 }
