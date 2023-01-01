@@ -6,7 +6,8 @@ public class CollectCoin : MonoBehaviour
 {
     private static AudioManager audioManager;
     private static HUDManager hud;
-    private GameObject spaceParent;
+    private string spaceTag;
+    private int spaceIndex;
     
     void Awake()
     {
@@ -17,12 +18,16 @@ public class CollectCoin : MonoBehaviour
     void Start()
     {
         Transform t = transform;
-        spaceParent = null;
+        GameObject spaceParent = null;
+        spaceTag = "";
+        spaceIndex = -1;
         while (t.parent != null)
         {
             if (t.parent.tag == "Room" || t.parent.tag == "Corridor")
             {
                 spaceParent = t.parent.gameObject;
+                spaceTag = spaceParent.tag;
+                spaceIndex = int.TryParse(spaceParent.name.Split(' ')[1], out int x) ? x : -1;
                 break;
             }
             t = t.parent.transform;
@@ -31,8 +36,6 @@ public class CollectCoin : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        int spaceIndex = -1;
-
         if (other.gameObject.CompareTag("Player"))
         {
             audioManager.Play("CoinCollected");
@@ -40,8 +43,7 @@ public class CollectCoin : MonoBehaviour
             Destroy(gameObject);
             hud.UpdateCount();
 
-            spaceIndex = int.TryParse(spaceParent.name.Split(' ')[1], out int x) ? x : -1;
-            GameHandler.HandleSpaceCompletion(spaceParent.tag, spaceIndex);
+            GameHandler.HandleSpaceCompletion(spaceTag, spaceIndex);
         }
     }
 }
