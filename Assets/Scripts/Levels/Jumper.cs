@@ -5,19 +5,19 @@ using UnityEngine;
 public class Jumper : MonoBehaviour
 {
     private static float bounceAmount;
-    private bool isActivated;
+    public bool isActivated;
     private Renderer rendererComponent;
     [SerializeField] private Material activatedMaterial, deactivatedMaterial;
 
     void Awake()
     {
         rendererComponent = GetComponent<Renderer>();
+        SetActivationMaterial();
     }
 
     void Start()
     {
         bounceAmount = 10f;
-        isActivated = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,7 +37,11 @@ public class Jumper : MonoBehaviour
     public void SwitchActivation()
     {
         isActivated = !isActivated;
+        SetActivationMaterial();
+    }
 
+    private void SetActivationMaterial()
+    {
         if (isActivated)
             rendererComponent.material = activatedMaterial;
         else
