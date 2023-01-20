@@ -4,6 +4,8 @@ Roll the ball and collect all the coins in this Unity game!
 
 ![](./ingame_screenshot.png)
 
+**For copyright reasons, the Assets/Models folder had been removed from the repo's history, and then re-imported with the ["Update assets folder architecture" commit](https://github.com/TheLycorisRadiata/game_unity_themrollybois/tree/fbf0695999570573031a05f3985362e2efab5750) containing only the authorized assets. Either way, without all the meshes and textures the project clone will be broken.**  
+
 ---
 
 ## RANDOM NOTES
