@@ -7,6 +7,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Uu]serSettings/
 
 # Folders of packages I'm not allowed to distribute
 /[Aa]ssets/Plugins
@@ -16,6 +17,7 @@
 !/[Aa]ssets/**/*.meta
 
 # IDE cache directories
+.vsconfig
 .vs/
 .vscode/
 .gradle/
