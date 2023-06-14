@@ -1,24 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private static GameObject player;
-    private static Vector3 offset;
-
-    void Awake()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
+    [SerializeField] private Transform _player;
+    private static Vector3 _offset;
 
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        _offset = transform.position - _player.position;
     }
 
     void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
+        transform.position = _player.position + _offset;
     }
 }

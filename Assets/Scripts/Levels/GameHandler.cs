@@ -1,51 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-    private static AudioManager audioManager;
-    private static GameObject roomParent, corridorParent;
-    private static GameObject[] arrRooms, arrCorridors;
-    [SerializeField]
-    private GameObject roomPrefab;
-    [SerializeField]
-    private GameObject corridorPrefab;
+    private static AudioManager _audioManager;
+    private static GameObject _roomParent, _corridorParent;
+    private static GameObject[] _arrRooms, _arrCorridors;
+    [SerializeField] private GameObject _roomPrefab;
+    [SerializeField] private GameObject _corridorPrefab;
 
     void Awake()
     {
-        int i, nbrRooms = 1, nbrCorridors = 2;
-        audioManager = FindObjectOfType<AudioManager>();
+        _audioManager = FindObjectOfType<AudioManager>();
 
-        roomParent = new GameObject("Rooms");
-        corridorParent = new GameObject("Corridors");
+        GenerateRooms();
+        GenerateCorridors();
+    }
 
-        arrRooms = new GameObject[nbrRooms];
-        for (i = 0; i < arrRooms.Length; ++i)
+    private void GenerateRooms()
+    {
+        int i;
+        int nbrRooms = 1;
+
+        _roomParent = new GameObject("Rooms");
+        _arrRooms = new GameObject[nbrRooms];
+
+        for (i = 0; i < _arrRooms.Length; ++i)
         {
-            arrRooms[i] = Instantiate(roomPrefab) as GameObject;
-            arrRooms[i].name = "Room " + i;
-            arrRooms[i].transform.parent = roomParent.transform;
-        }
-
-        arrCorridors = new GameObject[nbrCorridors];
-        for (i = 0; i < arrCorridors.Length; ++i)
-        {
-            arrCorridors[i] = Instantiate(corridorPrefab) as GameObject;
-            arrCorridors[i].name = "Corridor " + i;
-            arrCorridors[i].transform.parent = corridorParent.transform;
-
-            // tmp
-            if (i == 0)
-                arrCorridors[i].transform.position = new Vector3(11f, 0, 0);
-            else if (i == 1)
-                arrCorridors[i].transform.position = new Vector3(-11f, 0, 0);
+            _arrRooms[i] = Instantiate(_roomPrefab) as GameObject;
+            _arrRooms[i].name = "Room " + i;
+            _arrRooms[i].transform.parent = _roomParent.transform;
         }
     }
 
-    void Start()
+    private void GenerateCorridors()
     {
-        audioManager.Play("Theme");
+        int i;
+        int nbrCorridors = 2;
+
+        _corridorParent = new GameObject("Corridors");
+        _arrCorridors = new GameObject[nbrCorridors];
+
+        for (i = 0; i < _arrCorridors.Length; ++i)
+        {
+            _arrCorridors[i] = Instantiate(_corridorPrefab) as GameObject;
+            _arrCorridors[i].name = "Corridor " + i;
+            _arrCorridors[i].transform.parent = _corridorParent.transform;
+
+            // tmp
+            if (i == 0)
+                _arrCorridors[i].transform.position = new Vector3(11f, 0, 0);
+            else if (i == 1)
+                _arrCorridors[i].transform.position = new Vector3(-11f, 0, 0);
+        }
     }
 
     public static void HandleSpaceCompletion(string tag, int index)
@@ -55,13 +61,13 @@ public class GameHandler : MonoBehaviour
 
         if (tag == "Room")
         {
-            if (arrRooms[index].transform.Find("Collectibles").childCount == 0)
-                audioManager.Play("SpaceCompleted");
+            if (_arrRooms[index].transform.Find("Collectibles").childCount == 0)
+                _audioManager.Play("SpaceCompleted");
         }
         else
         {
-            if (arrCorridors[index].transform.Find("Collectibles").childCount == 0)
-                audioManager.Play("SpaceCompleted");
+            if (_arrCorridors[index].transform.Find("Collectibles").childCount == 0)
+                _audioManager.Play("SpaceCompleted");
         }
     }
 }

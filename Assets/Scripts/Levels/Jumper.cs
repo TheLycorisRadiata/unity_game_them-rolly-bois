@@ -1,50 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Jumper : MonoBehaviour
 {
-    private static float bounceAmount;
-    public bool isActivated;
-    private Renderer rendererComponent;
-    [SerializeField] private Material activatedMaterial, deactivatedMaterial;
+    private static float _bounceAmount = 10f;
+    [field: SerializeField] public bool IsActivated { get; private set; }
+    [SerializeField] private Material _activatedMaterial, _deactivatedMaterial;
+    private Renderer _rendererComponent;
 
     void Awake()
     {
-        rendererComponent = GetComponent<Renderer>();
+        _rendererComponent = GetComponent<Renderer>();
         SetActivationMaterial();
-    }
-
-    void Start()
-    {
-        bounceAmount = 10f;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject otherGo = other.gameObject;
         Rigidbody otherRb;
 
-        if (isActivated && otherGo.CompareTag("Player"))
+        if (IsActivated && other.CompareTag("Player"))
         {
-            otherRb = otherGo.GetComponent<Rigidbody>();
+            otherRb = other.GetComponent<Rigidbody>();
             if (otherRb != null)
-                otherRb.velocity = new Vector3(0f, bounceAmount, 0f);
+                otherRb.velocity = new Vector3(0f, _bounceAmount, 0f);
         }
     }
 
     // Unused for now
     public void SwitchActivation()
     {
-        isActivated = !isActivated;
+        IsActivated = !IsActivated;
         SetActivationMaterial();
     }
 
     private void SetActivationMaterial()
     {
-        if (isActivated)
-            rendererComponent.material = activatedMaterial;
-        else
-            rendererComponent.material = deactivatedMaterial;
+        _rendererComponent.material = IsActivated ? _activatedMaterial : _deactivatedMaterial;
     }
 }

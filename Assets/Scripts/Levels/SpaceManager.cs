@@ -1,21 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpaceManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject coinPrefab;
-    private GameObject collectibleChildren;
-    private GameObject groundChild;
-    private GameObject[] arrCoins;
-    private int minCoinAmount, maxCoinAmount;
-    public int coinAmount;
+    [SerializeField] private GameObject _coinPrefab;
+    private GameObject _collectibleChildren;
+    private GameObject _groundChild;
+    private GameObject[] _arrCoins;
+    private int _minCoinAmount, _maxCoinAmount;
+    public int CoinAmount;
 
     void Awake()
     {
-        groundChild = transform.Find("Ground").gameObject;
-        collectibleChildren = transform.Find("Collectibles").gameObject;
+        _groundChild = transform.Find("Ground").gameObject;
+        _collectibleChildren = transform.Find("Collectibles").gameObject;
     }
 
     void Start()
@@ -26,7 +23,7 @@ public class SpaceManager : MonoBehaviour
     private void PopulateSpace()
     {
         int i;
-        float coinScale = 0.5f, coinHeight = coinPrefab.transform.position.y;
+        float coinScale = 0.5f, coinHeight = _coinPrefab.transform.position.y;
         float xMin, xMax, zMin, zMax;
 
         if (gameObject.tag == "Room")
@@ -37,8 +34,8 @@ public class SpaceManager : MonoBehaviour
             zMin = -5f + coinScale;
             zMax = 5f - coinScale;
 
-            minCoinAmount = 1;
-            maxCoinAmount = 12;
+            _minCoinAmount = 1;
+            _maxCoinAmount = 12;
         }
         else if (gameObject.tag == "Corridor")
         {
@@ -48,21 +45,21 @@ public class SpaceManager : MonoBehaviour
             zMin = -5f + coinScale;
             zMax = 5f - coinScale;
 
-            minCoinAmount = 1;
-            maxCoinAmount = 3;
+            _minCoinAmount = 1;
+            _maxCoinAmount = 3;
         }
         else
             return;
 
-        coinAmount = (int)Random.Range(minCoinAmount, maxCoinAmount);
+        CoinAmount = (int)Random.Range(_minCoinAmount, _maxCoinAmount);
 
-        arrCoins = new GameObject[coinAmount];
-        for (i = 0; i < arrCoins.Length; ++i)
+        _arrCoins = new GameObject[CoinAmount];
+        for (i = 0; i < _arrCoins.Length; ++i)
         {
-            arrCoins[i] = Instantiate(coinPrefab) as GameObject;
-            arrCoins[i].transform.parent = collectibleChildren.transform;
+            _arrCoins[i] = Instantiate(_coinPrefab) as GameObject;
+            _arrCoins[i].transform.parent = _collectibleChildren.transform;
             // The coin scale has been taken into account as not to have the coin placed within walls
-            arrCoins[i].transform.localPosition = new Vector3(Random.Range(xMin, xMax), coinHeight, Random.Range(zMin, zMax));
+            _arrCoins[i].transform.localPosition = new Vector3(Random.Range(xMin, xMax), coinHeight, Random.Range(zMin, zMax));
         }
     }
 }

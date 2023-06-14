@@ -111,6 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de7430f78daa2b5586a4c0ffc9dd755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActivated: 1
-  activatedMaterial: {fileID: 2100000, guid: f975ab47b1dc0e942b7d1e266806a511, type: 2}
-  deactivatedMaterial: {fileID: 2100000, guid: 9442f4836dd1518368510ee5f2408f5b, type: 2}
+  <IsActivated>k__BackingField: 0
+  _activatedMaterial: {fileID: 2100000, guid: f975ab47b1dc0e942b7d1e266806a511, type: 2}
+  _deactivatedMaterial: {fileID: 2100000, guid: 9442f4836dd1518368510ee5f2408f5b, type: 2}

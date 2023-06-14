@@ -1,24 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HUDManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] numberPrefabs;
-    private static Transform tfAmount;
-    private static int count;
+    [SerializeField] private GameObject[] _numberPrefabs;
+    private static Transform _tfAmount;
+    private static int _count;
     
     void Awake()
     {
-        tfAmount = GameObject.Find("Main Camera").transform.Find("HUD Canvas").Find("Coin Counter").Find("Amount");
-        InstantiateNumber(0, tfAmount.position);
+        _tfAmount = GameObject.Find("Main Camera").transform.Find("HUD Canvas").Find("Coin Counter").Find("Amount");
+        InstantiateNumber(0, _tfAmount.position);
     }
 
     void Start()
     {
-        count = 0;
+        _count = 0;
     }
 
     public void UpdateCount()
@@ -29,16 +25,16 @@ public class HUDManager : MonoBehaviour
         Vector3 pos;
         int nbr;
 
-        ++count;
-        tmp = count.ToString().ToCharArray();
+        ++_count;
+        tmp = _count.ToString().ToCharArray();
 
-        for (i = 0; i < tfAmount.childCount; ++i)
-            Destroy(tfAmount.GetChild(i).gameObject);
+        for (i = 0; i < _tfAmount.childCount; ++i)
+            Destroy(_tfAmount.GetChild(i).gameObject);
 
         for (i = 0; i < tmp.Length; ++i)
         {
-            nbr = (int)Char.GetNumericValue(tmp[i]);
-            pos = tfAmount.position;
+            nbr = (int)char.GetNumericValue(tmp[i]);
+            pos = _tfAmount.position;
             pos.x += i * 2f;
             InstantiateNumber(nbr, pos);
         }
@@ -46,9 +42,9 @@ public class HUDManager : MonoBehaviour
 
     void InstantiateNumber(int value, Vector3 pos)
     {
-        GameObject go = Instantiate(numberPrefabs[value], pos, Quaternion.Euler(0f, 180f, 0f));
+        GameObject go = Instantiate(_numberPrefabs[value], pos, Quaternion.Euler(0f, 180f, 0f));
         go.transform.localScale = new Vector3(6f, 6f, 6f);
-        go.layer = tfAmount.gameObject.layer;
-        go.transform.parent = tfAmount;
+        go.layer = _tfAmount.gameObject.layer;
+        go.transform.parent = _tfAmount;
     }
 }
