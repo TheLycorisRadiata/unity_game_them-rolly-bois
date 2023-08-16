@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform _player;
     private static Vector3 _offset;
+    [SerializeField] private Transform _player;
 
-    void Start()
+    private void Start()
     {
         _offset = transform.position - _player.position;
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         transform.position = _player.position + _offset;
     }

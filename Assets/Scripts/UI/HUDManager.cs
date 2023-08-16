@@ -6,13 +6,13 @@ public class HUDManager : MonoBehaviour
     private static Transform _tfAmount;
     private static int _count;
     
-    void Awake()
+    private void Awake()
     {
         _tfAmount = GameObject.Find("Main Camera").transform.Find("HUD Canvas").Find("Coin Counter").Find("Amount");
         InstantiateNumber(0, _tfAmount.position);
     }
 
-    void Start()
+    private void Start()
     {
         _count = 0;
     }
@@ -40,7 +40,7 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    void InstantiateNumber(int value, Vector3 pos)
+    private void InstantiateNumber(int value, Vector3 pos)
     {
         GameObject go = Instantiate(_numberPrefabs[value], pos, Quaternion.Euler(0f, 180f, 0f));
         go.transform.localScale = new Vector3(6f, 6f, 6f);

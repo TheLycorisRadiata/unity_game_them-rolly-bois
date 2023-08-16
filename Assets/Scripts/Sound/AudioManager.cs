@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 	[SerializeField] private AudioMixerGroup _mixerGroup;
 	[SerializeField] private Sound[] _sounds;
 
-	void Awake()
+	private void Awake()
 	{
 		foreach (Sound s in _sounds)
 		{

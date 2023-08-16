@@ -7,13 +7,13 @@ public class CollectCoin : MonoBehaviour
     private string _spaceTag;
     private int _spaceIndex;
     
-    void Awake()
+    private void Awake()
     {
         _audioManager = FindObjectOfType<AudioManager>();
         _hud = GameObject.Find("Main Camera").transform.Find("HUD Canvas").GetComponent<HUDManager>();
     }
 
-    void Start()
+    private void Start()
     {
         Transform t = transform;
         GameObject spaceParent = null;
@@ -32,7 +32,7 @@ public class CollectCoin : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {

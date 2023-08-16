@@ -1,43 +1,45 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    private static Rigidbody _rb;
-    private static float _speed, _maxSpeed;
-    private static float _horizontalInput, _verticalInput;
-    private static Vector3 _checkpoint;
+    private static float _maxSpeed = 20f;
+    private float _speed = 15f;
+    private float _horizontalInput, _verticalInput;
+    private Vector3 _checkpoint = Vector3.zero;
+    private Rigidbody _rb;
 
-    void Awake()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    private void FixedUpdate()
     {
-        _speed = 15f;
-        _maxSpeed = 20f;
-        _checkpoint = Vector3.zero;
-    }
-
-    void FixedUpdate()
-    {
-        // Move the ball
-        _rb.AddForce(new Vector3(_horizontalInput, 0f, _verticalInput) * _speed, ForceMode.Force);
-
-        // Cap the ball's speed
-        if (_rb.velocity.magnitude > _maxSpeed)
-            _rb.velocity = _rb.velocity.normalized * _maxSpeed;
+        MovePlayer();
+        CapPlayerSpeed();
 
         if (transform.position.y < -1f)
             RespawnPlayer();
     }
 
-    void OnMove(InputValue axisValue)
+    private void OnMove(InputValue axisValue)
     {
         Vector2 movementVector = axisValue.Get<Vector2>();
         _horizontalInput = movementVector.x;
         _verticalInput = movementVector.y;
+    }
+
+    private void MovePlayer()
+    {
+        _rb.AddForce(new Vector3(_horizontalInput, 0f, _verticalInput) * _speed, ForceMode.Force);
+    }
+
+    private void CapPlayerSpeed()
+    {
+        if (_rb.velocity.magnitude > _maxSpeed)
+            _rb.velocity = _rb.velocity.normalized * _maxSpeed;
     }
 
     private void RespawnPlayer()

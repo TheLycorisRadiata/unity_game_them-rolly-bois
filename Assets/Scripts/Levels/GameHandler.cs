@@ -8,7 +8,7 @@ public class GameHandler : MonoBehaviour
     [SerializeField] private GameObject _roomPrefab;
     [SerializeField] private GameObject _corridorPrefab;
 
-    void Awake()
+    private void Awake()
     {
         _audioManager = FindObjectOfType<AudioManager>();
 

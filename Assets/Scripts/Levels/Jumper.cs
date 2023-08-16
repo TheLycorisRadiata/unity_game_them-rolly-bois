@@ -7,7 +7,7 @@ public class Jumper : MonoBehaviour
     [SerializeField] private Material _activatedMaterial, _deactivatedMaterial;
     private Renderer _rendererComponent;
 
-    void Awake()
+    private void Awake()
     {
         _rendererComponent = GetComponent<Renderer>();
         SetActivationMaterial();

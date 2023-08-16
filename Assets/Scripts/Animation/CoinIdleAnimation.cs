@@ -7,13 +7,13 @@ public class CoinIdleAnimation : MonoBehaviour
     private static float _frequency = 0.8f;
     private Vector3 _positionOffset;
 
-    void Start()
+    private void Start()
     {
         _positionOffset = transform.position;
         _positionOffset.y += 0.25f;
     }
 
-    void Update()
+    private void Update()
     {
         SetVerticalPosition();
         SetRotation();

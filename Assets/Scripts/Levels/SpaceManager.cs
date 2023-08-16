@@ -9,13 +9,13 @@ public class SpaceManager : MonoBehaviour
     private int _minCoinAmount, _maxCoinAmount;
     public int CoinAmount;
 
-    void Awake()
+    private void Awake()
     {
         _groundChild = transform.Find("Ground").gameObject;
         _collectibleChildren = transform.Find("Collectibles").gameObject;
     }
 
-    void Start()
+    private void Start()
     {
         PopulateSpace();
     }
