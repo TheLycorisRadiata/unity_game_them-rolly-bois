@@ -2,13 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    private static float _maxSpeed = 20f;
     [SerializeField] private InputActionReference _movementValue;
-    private float _speed = 15f;
     private float _horizontalInput, _verticalInput;
-    private Vector3 _checkpoint = Vector3.zero;
+    private static float _maxSpeed = 20f;
+    private float _speed = 15f;
     private Rigidbody _rb;
 
     private void Awake()
@@ -18,11 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
-        CapPlayerSpeed();
-
-        if (transform.position.y < -1f)
-            RespawnPlayer();
+        Move();
+        CapSpeed();
     }
 
     private void OnEnable()
@@ -46,20 +42,14 @@ public class PlayerController : MonoBehaviour
         _verticalInput = movementVector.y;
     }
 
-    private void MovePlayer()
+    private void Move()
     {
         _rb.AddForce(new Vector3(_horizontalInput, 0f, _verticalInput) * _speed, ForceMode.Force);
     }
 
-    private void CapPlayerSpeed()
+    private void CapSpeed()
     {
         if (_rb.velocity.magnitude > _maxSpeed)
             _rb.velocity = _rb.velocity.normalized * _maxSpeed;
-    }
-
-    private void RespawnPlayer()
-    {
-        transform.position = _checkpoint;
-        _rb.velocity = Vector3.zero;
     }
 }

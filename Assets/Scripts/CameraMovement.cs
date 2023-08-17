@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
-    private static Vector3 _offset;
     [SerializeField] private Transform _player;
+    private static Vector3 _offset;
 
     private void Start()
     {
