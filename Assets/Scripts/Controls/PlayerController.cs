@@ -28,27 +28,20 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         _movementValue.action.started += Movement;
+        _movementValue.action.performed += Movement;
         _movementValue.action.canceled += Movement;
     }
 
     private void OnDisable()
     {
         _movementValue.action.started -= Movement;
+        _movementValue.action.performed -= Movement;
         _movementValue.action.canceled -= Movement;
     }
 
-    // Behavior: Invoke Unity Events
     private void Movement(InputAction.CallbackContext context)
     {
         Vector2 movementVector = context.ReadValue<Vector2>();
-        _horizontalInput = movementVector.x;
-        _verticalInput = movementVector.y;
-    }
-
-    // Behavior: Send Messages
-    private void OnMove(InputValue axisValue)
-    {
-        Vector2 movementVector = axisValue.Get<Vector2>();
         _horizontalInput = movementVector.x;
         _verticalInput = movementVector.y;
     }
