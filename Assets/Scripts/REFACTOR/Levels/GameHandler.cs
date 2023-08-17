@@ -2,18 +2,28 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-    private static AudioManager _audioManager;
-    private static GameObject _roomParent, _corridorParent;
-    private static GameObject[] _arrRooms, _arrCorridors;
+    public static GameHandler instance { get; private set; }
+    [SerializeField] private Sound _theme;
+    [SerializeField] private Sound _spaceCompleted;
+    private GameObject _roomParent, _corridorParent;
+    private GameObject[] _arrRooms, _arrCorridors;
     [SerializeField] private GameObject _roomPrefab;
     [SerializeField] private GameObject _corridorPrefab;
 
     private void Awake()
     {
-        _audioManager = FindObjectOfType<AudioManager>();
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
 
         GenerateRooms();
         GenerateCorridors();
+    }
+
+    private void Start()
+    {
+        _theme.Play();
     }
 
     private void GenerateRooms()
@@ -54,7 +64,7 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public static void HandleSpaceCompletion(string tag, int index)
+    public void HandleSpaceCompletion(string tag, int index)
     {
         if (index == -1)
             return;
@@ -62,12 +72,12 @@ public class GameHandler : MonoBehaviour
         if (tag == "Room")
         {
             if (_arrRooms[index].transform.Find("Collectibles").childCount == 0)
-                _audioManager.Play("SpaceCompleted");
+                _spaceCompleted.Play();
         }
         else
         {
             if (_arrCorridors[index].transform.Find("Collectibles").childCount == 0)
-                _audioManager.Play("SpaceCompleted");
+                _spaceCompleted.Play();
         }
     }
 }

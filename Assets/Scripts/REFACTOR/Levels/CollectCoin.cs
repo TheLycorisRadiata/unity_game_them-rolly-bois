@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class CollectCoin : MonoBehaviour
 {
-    private static AudioManager _audioManager;
+    [SerializeField] private Sound _coinCollected;
     private static HUDManager _hud;
     private string _spaceTag;
     private int _spaceIndex;
     
     private void Awake()
     {
-        _audioManager = FindObjectOfType<AudioManager>();
         _hud = GameObject.Find("Main Camera").transform.Find("HUD Canvas").GetComponent<HUDManager>();
     }
 
@@ -36,12 +35,12 @@ public class CollectCoin : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _audioManager.Play("CoinCollected");
+            _coinCollected.Play();
             transform.parent = null;
             Destroy(gameObject);
             _hud.UpdateCount();
 
-            GameHandler.HandleSpaceCompletion(_spaceTag, _spaceIndex);
+            GameHandler.instance.HandleSpaceCompletion(_spaceTag, _spaceIndex);
         }
     }
 }
