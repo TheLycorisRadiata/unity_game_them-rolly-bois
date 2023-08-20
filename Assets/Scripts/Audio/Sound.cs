@@ -1,7 +1,10 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Sound : MonoBehaviour
 {
+    public event Action OnSoundStopped;
     [SerializeField] private SoundObject _soundObject;
     private AudioSource _source;
 
@@ -20,10 +23,23 @@ public class Sound : MonoBehaviour
     public void Play()
     {
         _source.Play();
+        StartCoroutine(WaitUntilStopped());
     }
 
     public void Stop()
     {
         _source.Stop();
+        InvokeSoundStopped();
+    }
+
+    private IEnumerator WaitUntilStopped()
+    {
+        yield return new WaitUntil(() => _source.isPlaying == false);
+        InvokeSoundStopped();
+    }
+
+    private void InvokeSoundStopped()
+    {
+        OnSoundStopped?.Invoke();
     }
 }

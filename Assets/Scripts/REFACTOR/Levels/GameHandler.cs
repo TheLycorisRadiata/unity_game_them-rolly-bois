@@ -4,11 +4,10 @@ public class GameHandler : MonoBehaviour
 {
     public static GameHandler instance { get; private set; }
     [SerializeField] private Sound _theme;
-    [SerializeField] private Sound _spaceCompleted;
-    private GameObject _roomParent, _corridorParent;
-    private GameObject[] _arrRooms, _arrCorridors;
     [SerializeField] private GameObject _roomPrefab;
     [SerializeField] private GameObject _corridorPrefab;
+    private GameObject _roomParent, _corridorParent;
+    private GameObject[] _arrRooms, _arrCorridors;
 
     private void Awake()
     {
@@ -61,23 +60,6 @@ public class GameHandler : MonoBehaviour
                 _arrCorridors[i].transform.position = new Vector3(11f, 0, 0);
             else if (i == 1)
                 _arrCorridors[i].transform.position = new Vector3(-11f, 0, 0);
-        }
-    }
-
-    public void HandleSpaceCompletion(string tag, int index)
-    {
-        if (index == -1)
-            return;
-
-        if (tag == "Room")
-        {
-            if (_arrRooms[index].transform.Find("Collectibles").childCount == 0)
-                _spaceCompleted.Play();
-        }
-        else
-        {
-            if (_arrCorridors[index].transform.Find("Collectibles").childCount == 0)
-                _spaceCompleted.Play();
         }
     }
 }

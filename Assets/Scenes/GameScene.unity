@@ -374,7 +374,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 494a0daefaadbc747a867c0b83a27403, type: 3}
 --- !u!4 &560069494 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4221340309975724, guid: 494a0daefaadbc747a867c0b83a27403, type: 3}
+  m_CorrespondingSourceObject: {fileID: 15197785061615962, guid: 494a0daefaadbc747a867c0b83a27403, type: 3}
   m_PrefabInstance: {fileID: 560069493}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &688436626
@@ -800,51 +800,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1219667218
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1219667219}
-  - component: {fileID: 1219667220}
-  m_Layer: 0
-  m_Name: Sound - Space Completed
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1219667219
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1219667218}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1296705894}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1219667220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1219667218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc3647061404b288bbbf09fc923aef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _soundObject: {fileID: 11400000, guid: 825260106049182d4baaffe3a743eec2, type: 2}
 --- !u!1 &1296705893
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +830,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1735100928}
-  - {fileID: 1219667219}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -892,7 +846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _theme: {fileID: 1735100929}
-  _spaceCompleted: {fileID: 1219667220}
   _roomPrefab: {fileID: 4066759273303156206, guid: 67ea33556588419e0bf9cdd7a7e9dcc1, type: 3}
   _corridorPrefab: {fileID: 3068680772311802007, guid: 94743a4356e0e974f8a4477f787da117, type: 3}
 --- !u!1001 &1323162718

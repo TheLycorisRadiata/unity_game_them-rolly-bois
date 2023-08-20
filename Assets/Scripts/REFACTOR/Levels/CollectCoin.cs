@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class CollectCoin : MonoBehaviour
 {
+    public event Action OnCoinDestroyed;
     [SerializeField] private Sound _coinCollected;
     private static HUDManager _hud;
     private string _spaceTag;
@@ -36,11 +38,20 @@ public class CollectCoin : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             _coinCollected.Play();
-            transform.parent = null;
-            Destroy(gameObject);
             _hud.UpdateCount();
-
-            GameHandler.instance.HandleSpaceCompletion(_spaceTag, _spaceIndex);
+            _coinCollected.OnSoundStopped += DestroyAfterSound;
+            GetComponent<MeshRenderer>().enabled = false;
         }
+    }
+
+    public void DestroyAfterSound()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        _coinCollected.OnSoundStopped -= DestroyAfterSound;
+        OnCoinDestroyed?.Invoke();
     }
 }
