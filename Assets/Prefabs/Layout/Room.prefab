@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4066759273303156205}
   - component: {fileID: 1391372117228588692}
+  - component: {fileID: 4089399372159858597}
   m_Layer: 0
   m_Name: Room
   m_TagString: Room
@@ -81,8 +82,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinPrefab: {fileID: 17466881551426852, guid: 494a0daefaadbc747a867c0b83a27403, type: 3}
+  _collectibles: {fileID: 6445220829543514280}
+--- !u!114 &4089399372159858597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4066759273303156206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60187c5295247dcfa88f5fcc6f66a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _spaceCompleted: {fileID: 4403027443095321585}
-  CoinAmount: 0
+  _collectibles: {fileID: 6445220829543514280}
 --- !u!1 &4199021927261622820
 GameObject:
   m_ObjectHideFlags: 0

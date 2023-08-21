@@ -45,6 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3068680772311802006}
   - component: {fileID: 466459960380169176}
+  - component: {fileID: 1403878949668456380}
   m_Layer: 0
   m_Name: Corridor
   m_TagString: Corridor
@@ -85,8 +86,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinPrefab: {fileID: 17466881551426852, guid: 494a0daefaadbc747a867c0b83a27403, type: 3}
+  _collectibles: {fileID: 3068680772334170417}
+--- !u!114 &1403878949668456380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3068680772311802007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60187c5295247dcfa88f5fcc6f66a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _spaceCompleted: {fileID: 4159341012019599077}
-  CoinAmount: 0
+  _collectibles: {fileID: 3068680772334170417}
 --- !u!1 &3068680772334170418
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +112,7 @@ GameObject:
   - component: {fileID: 3068680772334170417}
   m_Layer: 0
   m_Name: Collectibles
-  m_TagString: CoinParent
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
