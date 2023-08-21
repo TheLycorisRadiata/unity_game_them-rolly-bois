@@ -10,10 +10,23 @@ public class TextGeneration : MonoBehaviour
         Special
     }
 
+    private enum SpecialCharacter
+    {
+        Exclamation = '!',
+        Percentage = '%',
+        Ampersand = '&',
+        Apostrophe = '\'',
+        Colon = ',',
+        Dot = '.',
+        Question = '?',
+        Bracket = '[',
+    }
+
     public static TextGeneration instance { get; private set; }
     [SerializeField] private GameObject[] _letterPrefabs;
     [SerializeField] private GameObject[] _numberPrefabs;
     [SerializeField] private GameObject[] _specialPrefabs;
+    private char[] _specEnumArr;
 
     private void Awake()
     {
@@ -21,24 +34,35 @@ public class TextGeneration : MonoBehaviour
             instance = this;
         else
             Destroy(this);
+
+        _specEnumArr = GetSpecEnumArr();
     }
 
     public void Print(Transform container, string text)
     {
         int i;
-        Vector3 pos;
+        Vector3 pos = container.position;
         char[] charArr = text.ToCharArray();
 
         EmptyContainer(container);
 
         for (i = 0; i < charArr.Length; ++i)
         {
-            pos = container.position;
-            pos.x += i * 2f;
+            pos.x += 3f;
             if (charArr[i] == ' ')
                 continue;
             InstantiateCharacter(container, pos, charArr[i]);
         }
+    }
+
+    private char[] GetSpecEnumArr()
+    {
+        int i;
+        Array enumArr = Enum.GetValues(typeof(SpecialCharacter));
+        char[] charArr = new char[enumArr.Length];
+        for (i = 0; i < charArr.Length; ++i)
+            charArr[i] = Convert.ToChar(enumArr.GetValue(i));
+        return charArr;
     }
 
     private void EmptyContainer(Transform container)
@@ -75,15 +99,20 @@ public class TextGeneration : MonoBehaviour
 
     private GameObject GetCharacterPrefab(CharacterType type, char c)
     {
+        int i;
+
         if (type == CharacterType.Letter)
             return _letterPrefabs[char.ToUpper(c) - 'A'];
         else if (type == CharacterType.Number)
             return _numberPrefabs[c - '0'];
         else
         {
-            // TODO: Special characters
+            for (i = 0; i < _specEnumArr.Length; ++i)
+            {
+                if (c == _specEnumArr[i])
+                    return _specialPrefabs[i];
+            }
         }
-        
         return null;
     }
 }
