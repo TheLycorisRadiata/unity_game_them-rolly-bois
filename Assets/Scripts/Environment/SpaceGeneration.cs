@@ -13,6 +13,27 @@ public class SpaceGeneration : MonoBehaviour
         GenerateCorridors();
     }
 
+    private void LateUpdate()
+    {
+        bool isAnySpaceNotComplete = false;
+
+        foreach (GameObject go in _arrRooms)
+        {
+            isAnySpaceNotComplete = go.GetComponent<SpaceCompletion>().enabled;
+            if (isAnySpaceNotComplete)
+                return;
+        }
+        foreach (GameObject go in _arrCorridors)
+        {
+            isAnySpaceNotComplete = go.GetComponent<SpaceCompletion>().enabled;
+            if (isAnySpaceNotComplete)
+                return;
+        }
+
+        if (!isAnySpaceNotComplete)
+            Victory.instance.DisplayVictoryPanel();
+    }
+
     private void GenerateRooms()
     {
         int i;

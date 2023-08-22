@@ -17,7 +17,7 @@ public class PlayerRespawn : MonoBehaviour
             RespawnPlayer();
     }
 
-    private void RespawnPlayer()
+    public void RespawnPlayer()
     {
         transform.position = _checkpoint;
         _rb.velocity = Vector3.zero;
