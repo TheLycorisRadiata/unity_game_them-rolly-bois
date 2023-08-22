@@ -1,9 +1,12 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Victory : MonoBehaviour
 {
     public static Victory instance { get; private set; }
+    [SerializeField] private InputActionReference _anyKeyValue;
 
     private void Awake()
     {
@@ -17,6 +20,26 @@ public class Victory : MonoBehaviour
 
     private void Start()
     {
+        SetText();
+    }
+
+    private void OnEnable()
+    {
+        _anyKeyValue.action.started += RestartGame;
+    }
+
+    private void OnDisable()
+    {
+        _anyKeyValue.action.started -= RestartGame;
+    }
+
+    public void DisplayVictoryPanel()
+    {
+        gameObject.SetActive(true);
+    }
+
+    private void SetText()
+    {
         Transform[] ts = gameObject.GetComponentsInChildren<Transform>();
         ts = ts.ToList().OrderBy(e => e.name).ToArray();
 
@@ -25,8 +48,8 @@ public class Victory : MonoBehaviour
         TextGeneration.instance.Print(ts[2], "to restart...");
     }
 
-    public void DisplayVictoryPanel()
+    private void RestartGame(InputAction.CallbackContext context)
     {
-        gameObject.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
